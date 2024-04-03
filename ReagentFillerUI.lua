@@ -237,6 +237,7 @@ function ReagentFiller:AddCustomSubcategories(categoryArgs)
                     itemData.quantityToBuy = value 
                 end,
             }
+            --[[
             args.args.batchSize = {
                 type = "range",
                 name = "Size of Batch (vials are 5)",
@@ -249,6 +250,7 @@ function ReagentFiller:AddCustomSubcategories(categoryArgs)
                     itemData.batchSize = value 
                 end,
             }
+            ]]
 
             subCategoryArgs.args[itemName] = args
         end
@@ -341,5 +343,3 @@ function ReagentFiller:CreateLowReagentPopup()
     frame:SetLayout("List")
     frame:Show()
 end
-
-
