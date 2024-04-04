@@ -59,7 +59,7 @@ function ReagentFiller:CreateSubCategoryOptions(t_itemType, t_itemData)
             }
             args.args.quantityToBuy = {
                 type = "range",
-                name = "Quantity to Buy",
+                name = "Set Buy Limit",
                 order = 2,
                 min = 0,
                 max = itemData.maxQuantity or 100,
@@ -227,7 +227,7 @@ function ReagentFiller:AddCustomSubcategories(categoryArgs)
 
             args.args.quantityToBuy = {
                 type = "range",
-                name = "Quantity to Buy",
+                name = "Set Buy Limit",
                 order = 2,
                 min = 0,
                 max = itemData.maxQuantity or 100,
@@ -343,3 +343,5 @@ function ReagentFiller:CreateLowReagentPopup()
     frame:SetLayout("List")
     frame:Show()
 end
+
+
