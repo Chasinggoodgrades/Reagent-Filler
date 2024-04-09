@@ -2,7 +2,7 @@
 ## Title: ReagentFiller
 ## Notes: Quality of Life Reagent Management
 ## Author: Aches
-## Version: 1.0.0
+## Version: 1.0.1
 ## SavedVariables: ReagentFillerDB
 
 Libs\LibStub\LibStub.lua
@@ -15,8 +15,7 @@ Libs\AceConsole-3.0\AceConsole-3.0.xml
 Libs\AceGUI-3.0\AceGUI-3.0.xml
 Libs\AceConfig-3.0\AceConfig-3.0.xml
 
-
 Core.lua
-Constants.lua
 Utility.lua
+Constants.lua
 ReagentFillerUI.lua
