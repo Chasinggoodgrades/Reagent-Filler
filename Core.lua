@@ -1,7 +1,7 @@
 ReagentFiller = LibStub("AceAddon-3.0"):NewAddon("ReagentFiller", "AceEvent-3.0", "AceConsole-3.0")
 addonVersion = GetAddOnMetadata("ReagentFiller", "Version")
-local AC = LibStub("AceConfig-3.0")
-local ACD = LibStub("AceConfigDialog-3.0")
+local AceCfig = LibStub("AceConfig-3.0")
+local AceDial = LibStub("AceConfigDialog-3.0")
 local CloseWindows = _G.CloseWindows
 local windowOpen = false
 local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("ReagentFiller", {
@@ -15,6 +15,8 @@ local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("ReagentFiller", {
                 windowOpen = false
             else
                 windowOpen = true
+
+                ReagentFiller:RefreshOptions()
                 InterfaceOptionsFrame_OpenToCategory(ReagentFiller.optionsFrame)
                 InterfaceOptionsFrame_OpenToCategory(ReagentFiller.optionsFrame)
             end
@@ -28,8 +30,8 @@ function ReagentFiller:OnInitialize()
 	self.db = LibStub("AceDB-3.0"):New("ReagentFillerDB", self.DEFAULT_SETTINGS, true)
 
     -- Options Table
-	AC:RegisterOptionsTable("ReagentFiller_Options", self.options)
-	self.optionsFrame = ACD:AddToBlizOptions("ReagentFiller_Options", "ReagentFiller")
+	AceCfig:RegisterOptionsTable("ReagentFiller_Options", self.options)
+	self.optionsFrame = AceDial:AddToBlizOptions("ReagentFiller_Options", "ReagentFiller")
 
     -- Minimap icon
     icon:Register("ReagentFiller", LDB, self.db.char.minimapIcon)
@@ -64,6 +66,8 @@ function ReagentFiller:OnAddonLoaded()
     self:Print("Addon loaded.")
     self:UnregisterEvent("ADDON_LOADED")
     self:CreateOptionsTable()
+    self:RefreshOptions()
+    CloseWindows()
 end
 
 function ReagentFiller:SlashCommand(input, editbox)
@@ -72,7 +76,7 @@ function ReagentFiller:SlashCommand(input, editbox)
 	elseif input == "disable" then
 		self:Disable()
 	else
-        self:CreateOptionsTable()
+        self:RefreshOptions()
 		InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
 		InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
 	end
