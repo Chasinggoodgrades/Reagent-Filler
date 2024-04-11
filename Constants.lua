@@ -5,6 +5,7 @@ All right reserved.
 
 Creation of a Reagent Filler ReagentFiller that will fill the reagents for the player.
 ]]
+local icon = LibStub("LibDBIcon-1.0")
 ReagentFiller.DEFAULT_SETTINGS = {
     char = {
         lowReagentAlerts = false,
@@ -349,6 +350,21 @@ ReagentFiller.options = {
                     get = function(info) return ReagentFiller.db.char.lowReagentAlerts end,
                     set = function(info, value) ReagentFiller.db.char.lowReagentAlerts = value end,
                     order = 1,
+                },
+                hideMiniMapIcon = {
+                    type = "toggle",
+                    name = "Hide Minimap Icon",
+                    desc = "Hides the minimap icon for ReagentFiller.",
+                    get = function(info) return ReagentFiller.db.char.minimapIcon.hide end,
+                    set = function(info, value)
+                        ReagentFiller.db.char.minimapIcon.hide = value
+                        if value then
+                            icon:Hide("ReagentFiller")
+                        else
+                            icon:Show("ReagentFiller")
+                        end
+                    end,
+                    order = 2,
                 },
             },
         },

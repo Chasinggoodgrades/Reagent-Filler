@@ -71,8 +71,7 @@ function ReagentFiller:OnPlayerLogin()
     self:Enable()
 
     C_Timer.After(4, function()
-        self:RefreshOptions()
-        CloseWindows()
+        self:CreateOptionsTable()
     end)
 end
 
