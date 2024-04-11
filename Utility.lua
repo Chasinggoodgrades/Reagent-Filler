@@ -74,7 +74,7 @@ function ReagentFiller:GetQuiverCapacityAndOccupiedSlotsFromBag()
                 quiverCapacity = quiverCapacity + numSlots
 
                 for slot = 1, numSlots do
-                    local tempItemID = C_Container.GetContainerItemID(bag, slot)
+                    local tempItemID = C_Container.GetContainerItemID(bag, slot) or 0
                     tempQuiverArrowCount = self:GetItemCount(tempItemID)
 
                     local container = C_Container.GetContainerItemInfo(bag, slot)

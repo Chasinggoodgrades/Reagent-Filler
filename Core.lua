@@ -26,6 +26,10 @@ local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("ReagentFiller", {
 local icon = LibStub("LibDBIcon-1.0")
 
 function ReagentFiller:OnInitialize()
+
+    -- On Player Login
+    self:RegisterEvent("PLAYER_LOGIN", "OnPlayerLogin")
+
     -- DB -> Default_Settings
 	self.db = LibStub("AceDB-3.0"):New("ReagentFillerDB", self.DEFAULT_SETTINGS, true)
 
@@ -62,12 +66,21 @@ function ReagentFiller:OnZoneChangedNewArea()
     end
 end
 
+function ReagentFiller:OnPlayerLogin()
+    self:UnregisterEvent("PLAYER_LOGIN")
+    self:Enable()
+
+    C_Timer.After(4, function()
+        self:RefreshOptions()
+        CloseWindows()
+    end)
+end
+
+
 function ReagentFiller:OnAddonLoaded()
     self:Print("Addon loaded.")
     self:UnregisterEvent("ADDON_LOADED")
     self:CreateOptionsTable()
-    self:RefreshOptions()
-    CloseWindows()
 end
 
 function ReagentFiller:SlashCommand(input, editbox)
@@ -96,18 +109,23 @@ function ReagentFiller:OnMerchantShow()
         local quiverCapacity, quiverFreeSlots, quiverArrowCount = self:GetQuiverCapacityAndOccupiedSlotsFromBag()
         local arrowCount = self:SetArrowCount()
         local buyCount = (quiverCapacity * arrowCount) - quiverArrowCount
-        
+
         for _, itemData in pairs(hunterSettings) do
             if itemData.fillQuiver then
                 local ammoID = itemData.fillQuiverID
-                local loopTimes = buyCount / arrowCount + 1
-                if buyCount > 0 then
-                    for i = 1, loopTimes do
-                        if(buyCount > arrowCount) then
-                            buyCount = buyCount - arrowCount
-                            self:BuyItemFromMerchant(ammoID, arrowCount)
-                        else
-                            self:BuyItemFromMerchant(ammoID, buyCount)
+                local loopTimes = buyCount / arrowCount
+
+                if loopTimes < 1 then
+                    self:BuyItemFromMerchant(ammoID, buyCount)
+                else
+                    if buyCount > 0 then
+                        for i = 1, loopTimes do
+                            if(buyCount > arrowCount) then
+                                buyCount = buyCount - arrowCount
+                                self:BuyItemFromMerchant(ammoID, arrowCount)
+                            else
+                                self:BuyItemFromMerchant(ammoID, buyCount)
+                            end
                         end
                     end
                 end
