@@ -1,9 +1,11 @@
 --[[
+    
 ReagentFiller
 Copyright 2024 Aches (xarilawow@gmail.com)
 All right reserved.
 
 Creation of a Reagent Filler ReagentFiller that will fill the reagents for the player.
+
 ]]
 local icon = LibStub("LibDBIcon-1.0")
 ReagentFiller.DEFAULT_SETTINGS = {
@@ -339,7 +341,7 @@ ReagentFiller.options = {
     args = {
         general = {
             type = "group",
-            name = "General Settings",
+            name = "General Settings (|cFFFFFFFFCharacter Specific|r)",
             inline = true,
             order = 1,
             args = {

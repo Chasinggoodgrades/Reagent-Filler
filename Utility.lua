@@ -33,6 +33,14 @@ function ReagentFiller:GetItemNameWithLevel(itemID)
     return nameWithLevel
 end
 
+function ReagentFiller:CheckIfClassCategory(className)
+    if className == nil then return end
+    if(className == "--Custom--") or (className == "-Miscellaneous-") then
+        return false
+    else
+        return true
+    end
+end
 function ReagentFiller:InAMajorCity()
     local majorCities = {
         -- Localization needed

@@ -1,10 +1,27 @@
+--[[
+    
+ReagentFiller
+Copyright 2024 Aches (xarilawow@gmail.com)
+All right reserved.
+
+Creation of a Reagent Filler ReagentFiller that will fill the reagents for the player.
+
+]]
 local AceGUI = LibStub("AceGUI-3.0")
+local playersClass = select(2, UnitClass("player"))
 
 function ReagentFiller:CreateOptionsTable()
+    local classHandle = ""
     for className, itemTypes in pairs(self.db.char.reagents) do
+        -- If classname to upper case is equal to the players class
+        if (className:upper() ~= playersClass) and self:CheckIfClassCategory(className)  then
+            classHandle = "|cff7f7f7f" .. className .. "|r"
+        else
+            classHandle = className
+        end
         local categoryArgs = {
             type = "group",
-            name = className,
+            name = classHandle,
             order = 1,
             inline = false,
             args = {},
@@ -275,10 +292,15 @@ function ReagentFiller:CreateHunterOptions(categoryArgs, categoryTable)
                     inline = true,
                     args = {}
                 }
-
+                local fillName
+                if subCategory == "Bullets" then
+                    fillName = "Fill Pouch"
+                else
+                    fillName = "Fill Quiver"
+                end
                 args.args.fillQuiver = {
                     type = "toggle",
-                    name = "Fill Quiver",
+                    name = fillName,
                     order = 1,
                     get = function(info) return subCategoryTable.fillQuiver end,
                     set = function(info, value) 

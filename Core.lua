@@ -1,3 +1,12 @@
+--[[
+
+ReagentFiller
+Copyright 2024 Aches (xarilawow@gmail.com)
+All right reserved.
+
+Creation of a Reagent Filler ReagentFiller that will fill the reagents for the player.
+
+]]
 ReagentFiller = LibStub("AceAddon-3.0"):NewAddon("ReagentFiller", "AceEvent-3.0", "AceConsole-3.0")
 addonVersion = GetAddOnMetadata("ReagentFiller", "Version")
 local AceCfig = LibStub("AceConfig-3.0")

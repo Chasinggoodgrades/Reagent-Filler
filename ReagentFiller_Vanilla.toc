@@ -2,7 +2,7 @@
 ## Title: ReagentFiller
 ## Notes: Quality of Life Reagent Management
 ## Author: Aches
-## Version: 1.0.2
+## Version: 1.0.3
 ## SavedVariables: ReagentFillerDB
 
 Libs\LibStub\LibStub.lua
