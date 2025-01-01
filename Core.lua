@@ -25,9 +25,7 @@ local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("ReagentFiller", {
             else
                 windowOpen = true
 
-                ReagentFiller:RefreshOptions()
-                InterfaceOptionsFrame_OpenToCategory(ReagentFiller.optionsFrame)
-                InterfaceOptionsFrame_OpenToCategory(ReagentFiller.optionsFrame)
+                AceDial:Open("ReagentFiller_Options")
             end
         end
     end,
@@ -97,9 +95,7 @@ function ReagentFiller:SlashCommand(input, editbox)
 	elseif input == "disable" then
 		self:Disable()
 	else
-        self:RefreshOptions()
-		InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
-		InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
+        AceDial:Open("ReagentFiller_Options")
 	end
 end
 

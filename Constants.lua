@@ -17,8 +17,27 @@ ReagentFiller.DEFAULT_SETTINGS = {
         reagents = {
             ["-Miscellaneous-"] = {
                 ["World Buffs"] = {
-                    [184937] = { -- Item ID for Chronoboon Displacer
-                        maxQuantity = 10,
+                    [212160] = { -- Item ID for Chronoboon Displacer
+                        enabled = false,
+                        quantityToBuy = 5,
+                    },
+                },
+                ["Misc Vendors"] = {
+                    [8529] = { -- Item ID for Noggenfogger Elixir
+                        enabled = false,
+                        quantityToBuy = 5,
+                    },
+                },
+                ["Alchemy Vials"] = {
+                    [8925] = { -- Item ID for Crystal Vial
+                        enabled = false,
+                        quantityToBuy = 5,
+                    },
+                    [3371] = { -- Item ID for Empty Vial
+                        enabled = false,
+                        quantityToBuy = 5,
+                    },
+                    [3372] = { -- Item ID for Laded Vial
                         enabled = false,
                         quantityToBuy = 5,
                     },
@@ -116,18 +135,22 @@ ReagentFiller.DEFAULT_SETTINGS = {
                         quantityToBuy = 20,
                     },
                 },
+                ["SoD Exclusive Items"] = {
+                    [213407] = { -- Item ID for Catnip
+                        enabled = false,
+                        quantityToBuy = 20,
+                    },
+                },
             },
             
             ["Paladin"] = {
                 ["Symbols"] = {
                     [17033] = { -- Item ID for Symbol of Divinity
-                        maxQuantity = 20,
                         enabled = false,
                         quantityToBuy = 5,
                     },
                     [21177] = { -- Item ID for Symbol of Kings
                         batchSize = 20,
-                        maxQuantity = 200,
                         enabled = false,
                         quantityToBuy = 20,
                     },
@@ -137,7 +160,6 @@ ReagentFiller.DEFAULT_SETTINGS = {
                 ["Reagents"] = {
                     [17030] = { -- Item ID for Ankh
                         enabled = false,
-                        maxQuantity = 20,
                         quantityToBuy = 5,
                     },
                 },
@@ -146,12 +168,10 @@ ReagentFiller.DEFAULT_SETTINGS = {
                 ["Reagents"] = {
                     [5565] = { -- Item ID for Infernal Stone
                         enabled = false,
-                        maxQuantity = 20,
                         quantityToBuy = 5,
                     },
                     [16583] = { -- Item ID for Demonic Figurine
                         enabled = false,
-                        maxQuantity = 20,
                         quantityToBuy = 5,
                     },
                 },
@@ -348,7 +368,7 @@ ReagentFiller.options = {
                 lowReagentAlerts = {
                     type = "toggle",
                     name = "Low Reagent Alerts",
-                    desc = "Receive a warning when your enabled/auto-buying reagents fall below 20% while in a major city.",
+                    desc = "Receive a warning when your enabled/auto-buying reagents fall below 50% while in a major city.",
                     get = function(info) return ReagentFiller.db.char.lowReagentAlerts end,
                     set = function(info, value) ReagentFiller.db.char.lowReagentAlerts = value end,
                     order = 1,

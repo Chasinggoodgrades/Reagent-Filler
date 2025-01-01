@@ -9,6 +9,7 @@ Creation of a Reagent Filler ReagentFiller that will fill the reagents for the p
 ]]
 local AceGUI = LibStub("AceGUI-3.0")
 local playersClass = select(2, UnitClass("player"))
+local DEFAULT_MAX_QUANTITY = 1000
 
 function ReagentFiller:CreateOptionsTable()
     local classHandle = ""
@@ -79,14 +80,13 @@ function ReagentFiller:CreateSubCategoryOptions(t_itemType, t_itemData)
                 name = "Set Buy Limit",
                 order = 2,
                 min = 0,
-                max = itemData.maxQuantity or 100,
+                max = itemData.maxQuantity or DEFAULT_MAX_QUANTITY,
                 step = itemData.batchSize or 1,
                 get = function(info) return itemData.quantityToBuy end,
                 set = function(info, value) 
                     itemData.quantityToBuy = value 
                 end,
             }
-
             subCategoryArgs.args[itemName] = args
         end
     end
@@ -247,7 +247,7 @@ function ReagentFiller:AddCustomSubcategories(categoryArgs)
                 name = "Set Buy Limit",
                 order = 2,
                 min = 0,
-                max = itemData.maxQuantity or 100,
+                max = itemData.maxQuantity or DEFAULT_MAX_QUANTITY,
                 step = itemData.batchSize or 1,
                 get = function(info) return itemData.quantityToBuy end,
                 set = function(info, value) 
@@ -347,11 +347,11 @@ end
 function ReagentFiller:CreateLowReagentPopup()
     -- Frame itself
     local frame = AceGUI:Create("Frame")
-    frame:SetTitle("Low Reagent Alert")
+    frame:SetTitle("LOW REAGENT WARNING")
     frame:SetWidth(200)
     frame:SetHeight(60)
     frame:SetPoint("CENTER", UIParent, "CENTER", 0, -100)
-    frame:SetStatusText("LOW REAGENTS")
+    frame:SetStatusText("LESS THAN 50% OF SET REAGENTS")
     frame:SetCallback("OnClose", function(widget) AceGUI:Release(widget) end)
     frame:SetLayout("List")
 

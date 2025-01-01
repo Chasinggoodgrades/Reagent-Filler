@@ -133,10 +133,10 @@ function ReagentFiller:CheckIfLowOnEnabledReagents()
             itemData = itemInfo.itemData
             quantityToBuy = itemData.quantityToBuy or 0
             itemCount = self:GetItemCount(itemID)
-            local threshold = quantityToBuy * 0.2  -- 20% threshold
+            local threshold = quantityToBuy * 0.50  -- 50% threshold
 
             if itemCount <= threshold then
-                self:Print("Low on Reagents")
+                self:Print("Less than 50% of enabled reagents.")
                 return true
             end
         end
@@ -148,8 +148,6 @@ end
 function ReagentFiller:RefreshOptions()
     CloseWindows()
     self:CreateOptionsTable()
-    InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
-    InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
 end
 
 function ReagentFiller:BuyItemFromMerchant(itemID, quantity)
