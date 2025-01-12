@@ -66,6 +66,13 @@ function ReagentFiller:CreateSubCategoryOptions(t_itemType, t_itemData)
                 inline = true,
                 args = {}
             }
+            args.args.icon = {
+                type = "description",
+                name = "",
+                image = function() return self:GetItemIcon(itemID) end,
+                order = 0,
+                width = "half",
+            }
             args.args.enabled = {
                 type = "toggle",
                 name = "Enabled",
@@ -76,17 +83,16 @@ function ReagentFiller:CreateSubCategoryOptions(t_itemType, t_itemData)
                 end,
             }
             args.args.quantityToBuy = {
-                type = "range",
+                type = "input",
                 name = "Set Buy Limit",
+                desc = "Enter the quantity of " .. itemName .. " to buy up to / restock to. \n\n|cFFFF0000BEWARE: NO LIMIT|r",
                 order = 2,
-                min = 0,
-                max = itemData.maxQuantity or DEFAULT_MAX_QUANTITY,
-                step = itemData.batchSize or 1,
-                get = function(info) return itemData.quantityToBuy end,
+                width = "half",
+                get = function(info) return itemData.quantityToBuy ~= nil and tostring(itemData.quantityToBuy) or "0" end,
                 set = function(info, value) 
-                    itemData.quantityToBuy = value 
+                    itemData.quantityToBuy = tonumber(value) or 0
                 end,
-            }
+            }            
             subCategoryArgs.args[itemName] = args
         end
     end
@@ -231,7 +237,13 @@ function ReagentFiller:AddCustomSubcategories(categoryArgs)
                 inline = true,
                 args = {}
             }
-
+            args.args.icon = {
+                type = "description",
+                name = "",
+                image = function() return self:GetItemIcon(itemID) end,
+                order = 0,
+                width = "half",
+            }
             args.args.enabled = {
                 type = "toggle",
                 name = "Enabled",
@@ -241,19 +253,17 @@ function ReagentFiller:AddCustomSubcategories(categoryArgs)
                     itemData.enabled = value 
                 end,
             }
-
             args.args.quantityToBuy = {
-                type = "range",
+                type = "input",
                 name = "Set Buy Limit",
+                desc = "Enter the quantity of " .. itemName .. " to buy up to / restock to. \n\n|cFFFF0000BEWARE: NO LIMIT|r",
                 order = 2,
-                min = 0,
-                max = itemData.maxQuantity or DEFAULT_MAX_QUANTITY,
-                step = itemData.batchSize or 1,
-                get = function(info) return itemData.quantityToBuy end,
+                width = "half",
+                get = function(info) return itemData.quantityToBuy ~= nil and tostring(itemData.quantityToBuy) or "0" end,
                 set = function(info, value) 
-                    itemData.quantityToBuy = value 
+                    itemData.quantityToBuy = tonumber(value) or 0
                 end,
-            }
+            }    
             --[[
             args.args.batchSize = {
                 type = "range",

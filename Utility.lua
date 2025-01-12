@@ -10,6 +10,10 @@ function ReagentFiller:GetItemCount(itemID)
     return GetItemCount(itemID)      -- Deprecated but works in classic currently, expect to change.
 end
 
+function ReagentFiller:GetItemIcon(itemID)
+    local itemIcon = GetItemIcon(itemID)    -- Deprecated but works in classic currently, expect to change.
+    return itemIcon
+end
 --- END API Functions ---
 
 function ReagentFiller:GetItemID(itemLink)
