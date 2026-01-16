@@ -58,7 +58,7 @@ function ReagentFiller:CreateSubCategoryOptions(t_itemType, t_itemData)
         local _, _, _, _, lvl = self:GetItemInfo(itemID)
         local nameWithLevel = itemName .. (lvl and lvl ~= 0 and " (Level " .. lvl .. ")" or "")
 
-        if(itemData.version == nil or itemData.version == WOW_PROJECT_ID) then
+        if(itemData.version == nil or itemData.version <= WOW_PROJECT_ID) then
             local args = {
                 type = "group",
                 name = nameWithLevel,
@@ -326,7 +326,7 @@ function ReagentFiller:CreateHunterOptions(categoryArgs, categoryTable)
                     values = function()
                         local itemValues = {}
                         for id, data in pairs(subCategoryTable) do
-                            if((id ~= "fillQuiver" and id ~= "fillQuiverID") and (data.version == nil or data.version == WOW_PROJECT_ID)) then
+                            if((id ~= "fillQuiver" and id ~= "fillQuiverID") and (data.version == nil or data.version <= WOW_PROJECT_ID)) then
                                 itemValues[id] =  self:GetItemNameWithLevel(id)
                             end
                         end

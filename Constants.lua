@@ -41,6 +41,11 @@ ReagentFiller.DEFAULT_SETTINGS = {
                         enabled = false,
                         quantityToBuy = 5,
                     },
+                    [18256] = { -- Item ID for Imbued Vial
+                        version = WOW_PROJECT_BURNING_CRUSADE_CLASSIC,
+                        enabled = false,
+                        quantityToBuy = 5,
+                    },
                 },
             },
             ["Mage"] = {
@@ -57,11 +62,12 @@ ReagentFiller.DEFAULT_SETTINGS = {
                         enabled = false,
                         quantityToBuy = 20,
                     },
+                },
+                ["SoD Exclusive Items"] = {
                     [211779] = { -- Item ID for Comprehension Charm
-                        version = WOW_PROJECT_CLASSIC,
                         enabled = false,
                         quantityToBuy = 5,
-                    }
+                    },
                 },
             },
             ["Priest"] = {
@@ -104,7 +110,7 @@ ReagentFiller.DEFAULT_SETTINGS = {
                         quantityToBuy = 20,
                     },
                     [22147] = { -- Item ID for Flintweed Seed
-                        version = WOW_PROJECT_WRATH_CLASSIC,
+                        version = WOW_PROJECT_BURNING_CRUSADE_CLASSIC,
                         enabled = false,
                         quantityToBuy = 20,
                     },
@@ -125,7 +131,7 @@ ReagentFiller.DEFAULT_SETTINGS = {
                         quantityToBuy = 20,
                     },
                     [22148] = { -- Item ID for Wild Quillvine
-                        version = WOW_PROJECT_WRATH_CLASSIC,
+                        version = WOW_PROJECT_BURNING_CRUSADE_CLASSIC,
                         enabled = false,
                         quantityToBuy = 20,
                     },
@@ -140,6 +146,10 @@ ReagentFiller.DEFAULT_SETTINGS = {
                         enabled = false,
                         quantityToBuy = 20,
                     },
+                    [211779] = { -- Item ID for Comprehension Charm
+                        enabled = false,
+                        quantityToBuy = 5,
+                    }
                 },
             },
             
@@ -183,6 +193,11 @@ ReagentFiller.DEFAULT_SETTINGS = {
                         enabled = false,
                         quantityToBuy = 20,
                     },
+					[5140] = { -- Item ID for Flash Powder
+						version = WOW_PROJECT_CLASSIC,
+						enabled = false,
+						quantityToBuy = 20,
+					},
                     [8924] = { -- Item ID for Dust of Deterioration
                         version = WOW_PROJECT_CLASSIC,
                         enabled = false,
@@ -246,7 +261,7 @@ ReagentFiller.DEFAULT_SETTINGS = {
                         quantityToBuy = 20,
                     },
                     [18256] = { -- Item ID for Imbued Vial
-                        version = WOW_PROJECT_WRATH_CLASSIC,
+                        version = WOW_PROJECT_THE_BURNING_CRUSADE_CLASSIC,
                         enabled = false,
                         quantityToBuy = 20,
                     },
@@ -281,22 +296,49 @@ ReagentFiller.DEFAULT_SETTINGS = {
                         batchSize = 200,
                         enabled = false,
                     },
-                    ------ WOTLK BEGIN
-                    [28053] = { -- Item ID for Wicked Arrow
-                        version = WOW_PROJECT_WRATH_CLASSIC,
+                    [231806] = { -- Item ID for Searing Arrows (SOD)
                         batchSize = 200,
                         enabled = false,
                     },
+
+                    ------ TBC BEGIN
+                    [28053] = { -- Item ID for Wicked Arrow
+                        version = WOW_PROJECT_BURNING_CRUSADE_CLASSIC,
+                        batchSize = 200,
+                        enabled = false,
+                    },
+                    [24417] = { -- Item ID for Scout's Arrow
+                        version = WOW_PROJECT_BURNING_CRUSADE_CLASSIC,
+                        batchSize = 200,
+                        enabled = false,
+                    },
+                    [30611] = { -- Item ID for Halaani Razorshaft Arrow
+                        version = WOW_PROJECT_BURNING_CRUSADE_CLASSIC,
+                        batchSize = 200,
+                        enabled = false,
+                    },
+
                     [28056] = { -- Item ID for Blackflight Arrow
-                        version = WOW_PROJECT_WRATH_CLASSIC,
+                        version = WOW_PROJECT_BURNING_CRUSADE_CLASSIC,
+                        batchSize = 200,
+                        enabled = false,
+                    },
+                    [31949] = { -- Item ID for Warden's Arrow
+                        version = WOW_PROJECT_BURNING_CRUSADE_CLASSIC,
+                        batchSize = 200,
+                        enabled = false,
+                    },
+                    [34581] = { -- Item ID Mysterious Arrow
+                        version = WOW_PROJECT_BURNING_CRUSADE_CLASSIC,
                         batchSize = 200,
                         enabled = false,
                     },
                     [31737] = { -- Item ID for Timeless Arrow
-                        version = WOW_PROJECT_WRATH_CLASSIC,
+                        version = WOW_PROJECT_BURNING_CRUSADE_CLASSIC,
                         batchSize = 200,
                         enabled = false,
                     },
+                    ------ WOTLK BEGIN
                     [41586] = { -- Item ID for Terrorshaft Arrow
                         version = WOW_PROJECT_WRATH_CLASSIC,
                         batchSize = 200,
@@ -304,7 +346,7 @@ ReagentFiller.DEFAULT_SETTINGS = {
                     },
                 },
                 ["Bullets"] = {
-                    fillQuiver = false;
+                    fillQuiver = false,
                     fillQuiverID = 0,
                     [2516] = { -- Item ID for Light Shot
                         batchSize = 200,
@@ -356,7 +398,7 @@ ReagentFiller.DEFAULT_SETTINGS = {
 }
 ReagentFiller.options = {
     type = "group",
-    name = "|cFFFFD700ReagentFiller|r |cFFFFFFFFv" .. addonVersion .. "|r",
+    name = "|cFFFFD700ReagentFiller|r |cFFFFFFFFv" .. (addonVersion or "Unknown") .. "|r",
     handler = ReagentFiller,
     args = {
         general = {

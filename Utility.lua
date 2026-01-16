@@ -154,6 +154,8 @@ function ReagentFiller:RefreshOptions()
     self:CreateOptionsTable()
 end
 
+-- This function ASSUMES you have the currency to buy the items... 
+-- May be odd for items that require items instead of copper currency ? Unsure if it'll be a problem.
 function ReagentFiller:BuyItemFromMerchant(itemID, quantity)
     local itemName = self:GetItemInfo(itemID)
     for i = 1, GetMerchantNumItems() do

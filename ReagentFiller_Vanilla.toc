@@ -1,8 +1,8 @@
-## Interface: 11505
+## Interface: 11508
 ## Title: ReagentFiller
 ## Notes: Quality of Life Reagent Management
 ## Author: Aches
-## Version: 1.0.7
+## Version: 1.1.1
 ## SavedVariables: ReagentFillerDB
 
 Libs\LibStub\LibStub.lua

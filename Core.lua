@@ -8,7 +8,8 @@ Creation of a Reagent Filler ReagentFiller that will fill the reagents for the p
 
 ]]
 ReagentFiller = LibStub("AceAddon-3.0"):NewAddon("ReagentFiller", "AceEvent-3.0", "AceConsole-3.0")
-addonVersion = GetAddOnMetadata("ReagentFiller", "Version")
+local getAddOnMetadata = C_AddOns and C_AddOns.GetAddOnMetadata or GetAddOnMetadata
+addonVersion = getAddOnMetadata("ReagentFiller", "Version") or "Unknown"
 local AceCfig = LibStub("AceConfig-3.0")
 local AceDial = LibStub("AceConfigDialog-3.0")
 local CloseWindows = _G.CloseWindows
@@ -114,7 +115,7 @@ function ReagentFiller:OnMerchantShow()
         local arrowCount = self:SetArrowCount()
         local buyCount = (quiverCapacity * arrowCount) - quiverArrowCount
 
-        for _, itemData in pairs(hunterSettings) do
+        for _, itemData in pairs(hunterSettings) do -- Fills quiver with .. selected arrows / space left
             if itemData.fillQuiver then
                 local ammoID = itemData.fillQuiverID
                 local loopTimes = buyCount / arrowCount
