@@ -17,7 +17,7 @@ local windowOpen = false
 local LDB = LibStub("LibDataBroker-1.1"):NewDataObject("ReagentFiller", {
     type = "data source",
     text = "ReagentFiller",
-    icon = "Interface\\Icons\\INV_Misc_Bag_08",
+    icon = "Interface\\AddOns\\ReagentFiller\\Assets\\rfimg.png",
     OnClick = function(self, button)
         if button == "LeftButton" then
             if windowOpen then
