@@ -16,10 +16,17 @@ jobs:
       - name: Extract TOC version
         id: toc
         run: |
-          VERSION=$(grep -E "^## Version:" ReagentFiller/ReagentFiller.toc | sed 's/## Version: //')
+          VERSION=$(grep -E "^## Version:" ReagentFiller/ReagentFiller_TBC.toc | sed 's/## Version: //')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Extracted version: $VERSION"
 
-      - name: Check if version already released
+      - name: Fail if version is empty
+        if: steps.toc.outputs.version == ''
+        run: |
+          echo "ERROR: Version not found in TOC file."
+          exit 1
+
+      - name: Check if tag already exists
         id: check
         uses: mukunku/tag-exists-action@v1.4.0
         with:
