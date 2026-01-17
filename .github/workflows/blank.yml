@@ -30,7 +30,7 @@ jobs:
         id: check
         uses: mukunku/tag-exists-action@v1.4.0
         with:
-          tag: "v${{ steps.toc.outputs.version }}"
+          tag: "v${{ steps.toc.outputs.version }}-release"
 
       - name: Stop if tag already exists
         if: steps.check.outputs.exists == 'true'
@@ -46,7 +46,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: "v${{ steps.toc.outputs.version }}"
+          tag_name: "v${{ steps.toc.outputs.version }}-release"
           name: "ReagentFiller v${{ steps.toc.outputs.version }}"
           files: "build/ReagentFiller-${{ steps.toc.outputs.version }}.zip"
         env:
