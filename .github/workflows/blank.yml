@@ -1,0 +1,53 @@
+name: Release on TOC Version Change
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Extract TOC version
+        id: toc
+        run: |
+          VERSION=$(grep -E "^## Version:" ReagentFiller/ReagentFiller.toc | sed 's/## Version: //')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Check if version already released
+        id: check
+        uses: mukunku/tag-exists-action@v1.4.0
+        with:
+          tag: "v${{ steps.toc.outputs.version }}"
+
+      - name: Stop if tag already exists
+        if: steps.check.outputs.exists == 'true'
+        run: |
+          echo "Version already released. Skipping."
+          exit 0
+
+      - name: Create ZIP package
+        run: |
+          mkdir build
+          zip -r "build/ReagentFiller-${{ steps.toc.outputs.version }}.zip" ReagentFiller
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: "v${{ steps.toc.outputs.version }}"
+          name: "ReagentFiller v${{ steps.toc.outputs.version }}"
+          files: "build/ReagentFiller-${{ steps.toc.outputs.version }}.zip"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload to CurseForge
+        run: |
+          curl -X POST "https://wow.curseforge.com/api/projects/997710/upload-file" \
+            -H "x-api-token: ${{ secrets.CURSEFORGE_API_TOKEN }}" \
+            -F "file=@build/ReagentFiller-${{ steps.toc.outputs.version }}.zip" \
+            -F "metadata={\"changelog\":\"Automated release v${{ steps.toc.outputs.version }}\",\"displayName\":\"v${{ steps.toc.outputs.version }}\"};type=application/json"
