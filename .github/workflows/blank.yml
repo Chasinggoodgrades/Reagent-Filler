@@ -52,9 +52,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload to CurseForge
-        run: |
-          curl -X POST "https://wow.curseforge.com/api/projects/997710/upload-file" \
-            -H "x-api-token: ${{ secrets.CURSEFORGE_API_TOKEN }}" \
-            -F "file=@build/ReagentFiller-${{ steps.toc.outputs.version }}.zip" \
-            -F "metadata={\"changelog\":\"Automated release v${{ steps.toc.outputs.version }}\",\"displayName\":\"v${{ steps.toc.outputs.version }}\"};type=application/json"
+      #- name: Upload to CurseForge
+      #  run: |
+      #    curl -X POST "https://wow.curseforge.com/api/projects/997710/upload-file" \
+      #      -H "x-api-token: ${{ secrets.CURSEFORGE_API_TOKEN }}" \
+      #      -F "file=@build/ReagentFiller-${{ steps.toc.outputs.version }}.zip" \
+      #      -F "metadata={\"changelog\":\"Automated release v${{ steps.toc.outputs.version }}\",\"displayName\":\"v${{ steps.toc.outputs.version }}\"};type=application/json"
