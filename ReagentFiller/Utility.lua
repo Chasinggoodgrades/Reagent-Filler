@@ -174,7 +174,7 @@ function ReagentFiller:BuyReagentsFromMerchant(reagents)
             for itemID, itemData in pairs(itemTypes) do
                 if type(itemData) == "table" and itemData.enabled then
                     local quantityToBuy = itemData.quantityToBuy or 0
-                    local maxStack = select(8, GetItemInfo(itemID)) or 1 
+                    local maxStack = select(8, GetItemInfo(itemID)) or 1
                     local quantityToBuyAdjusted = math.max(0, quantityToBuy - self:GetItemCount(itemID))
    
                     while quantityToBuyAdjusted > 0 do
