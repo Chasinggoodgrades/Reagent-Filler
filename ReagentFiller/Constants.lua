@@ -10,7 +10,7 @@ Creation of a Reagent Filler ReagentFiller that will fill the reagents for the p
 local icon = LibStub("LibDBIcon-1.0")
 ReagentFiller.DEFAULT_SETTINGS = {
     char = {
-        lowReagentAlerts = false,
+        lowReagentAlerts = true,
         minimapIcon = {
             hide = false,
         },
@@ -26,6 +26,28 @@ ReagentFiller.DEFAULT_SETTINGS = {
                     [8529] = { -- Item ID for Noggenfogger Elixir
                         enabled = false,
                         quantityToBuy = 5,
+                    },
+                },
+                ["Tailoring Threads"] = {
+                    [2321] = { -- Item ID for Fine Thread
+                        enabled = false,
+                        quantityToBuy = 20,
+                    },
+                    [2320] = { -- Item ID for Coarse Thread
+                        enabled = false,
+                        quantityToBuy = 20,
+                    },
+                    [4291] = { -- Item ID for Silken Thread
+                        enabled = false,
+                        quantityToBuy = 20,
+                    },
+                    [8343] = { -- Item ID for Heavy Silken Thread
+                        enabled = false,
+                        quantityToBuy = 20,
+                    },
+                    [14341] = { -- Item ID for Rune Thread
+                        enabled = false,
+                        quantityToBuy = 20,
                     },
                 },
                 ["Alchemy Vials"] = {
